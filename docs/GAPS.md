@@ -94,6 +94,27 @@ not appear in the Appendix B coefficient equations).
   TP-1538 schedule is limited to 0…25° and the aero data stop at 0°. The TP-1538 schedule is used everywhere.
 - **Stall speed / take-off speed / cruise speed**: none of the sources
   gives one. The tests use the conditions TP-1538 does document instead (see §6).
+- **LEF data above α = 45°**: the LEF increment tables (`*_lef`) stop at
+  α = 45° (TP-1538 alpha2 axis); the lookup clamps them at 45° above that.
+- **Fuel, weight change, engine failure, icing, damage**: not modelled.
+
+## 5a. Implementation choices that deviate from a plain RigidBody3D
+
+- **custom_integrator.** Godot's RigidBody3D inertia is diagonal only, but
+  TP-1538 Table I gives Ixz = 982 slug·ft². `Aircraft` sets
+  `custom_integrator = true`; `F16Model.tick()` updates linear and angular
+  velocity itself (full tensor plus the engine angular momentum term,
+  ω̇ = I⁻¹(M − ω × (Iω + h))), with Godot's `state.total_gravity` applied
+  exactly once. Godot integrates the pose and resolves collisions. The
+  diagonal `inertia` given to Godot is used only for contact response.
+- **Ground.** A 40 × 40 km box, not `WorldBoundaryShape3D`: under Jolt the
+  aircraft fell through the boundary plane in the main scene.
+- **Crash detection.** Any contact between the airframe collision boxes and
+  the world is a crash; the wheels are raycasts and never collide.
+- **Test pilot.** The take-off test rotates with half aft stick at 70 m/s.
+  That is technique, not aircraft data (PLACEHOLDER).
+- **Pilot-input tuning** (keyboard ramp 3/s and 5/s, throttle 0.45/s, trim rates
+  0.4 g/s and 3°/s, the 0.12 deadzone): input feel, not aircraft data.
 
 ## 6. Verification against the documents
 
@@ -101,4 +122,28 @@ See `tests/` and the results section below (updated by running the tests).
 
 ### Results
 
-(filled in after the tests run)
+Run on Godot 4.7.2 (Jolt), 2026-10-29.
+`godot --headless --path . --script res://tests/run_tests.gd`: **36/36 pass**.
+`godot --headless --path . --fixed-fps 120 --script res://tests/scene_test.gd`: **4/4 pass**.
+
+| Check | Reference | Result |
+|---|---|---|
+| Table lookup at grid points, interpolation, clamping | TP Table III (pp. 51, 72, 90), Table VI | exact (≤1e-9) |
+| Frames round trip, cross product, gear position, inertia SI | Table I, README | pass |
+| ISA SL density, 11 km T/p, SL a | ISA | pass |
+| Engine military thrust M0.2 SL, idle→mil spool, AB light | Table VI, Fig. 66 | 56 401 N; t95 = 4.1 s; 0.46 s |
+| Trim M 0.6 / 9144 m | TP p.16 tracking task | α 5.28°, δh −0.27°, throttle 0.301 |
+| 60 s hands-off with FCS on (sim core and RigidBody) | | max \|Δh\| 0.00 m |
+| 5 °/s pitch kick damped by the FCS | | peak Δα 0.48°, back to trim in 6 s |
+| Static margin at low α (unaugmented) | TP p.17 "about −4 %" | −4.1 % c̄ |
+| Full aft stick α limit in 1 g flight | TP p.40 "about 25°" | steady 25.4°, peak 27.3° |
+| CLmax α | TP p.17 "about 35°" | CLmax 1.894 at 36° |
+| Implied 1 g stall speeds (SL, 91 188 N) | derived (no doc value) | Vs(CLmax) 53.1 m/s (103 kt); V(α 25°) 58.6 m/s (114 kt) |
+| Gear static compression and load split | placeholder spring sizing | 0.138 of 0.254 m nose, 0.131 of 0.267 m main; nose share 19.9 % |
+| Parked at idle on brakes, 30 s | | drift 0.0000 m |
+| Max-AB take-off on flat ground | no doc value | lift-off 85.2 m/s (166 kt), 381 m roll, α 8.5° |
+| 10 min flight with manoeuvres: finite state, basis orthonormal | | error 2.5e-7 (core), < 1e-6 (RigidBody) |
+
+The stall-speed check in the spec ("within 5 %") has no documented value
+to compare against. The test reports the speeds the TP-1538 data imply
+instead, and checks that level trim exists at 1.05 × V(α 25°).
