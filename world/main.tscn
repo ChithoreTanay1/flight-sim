@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://world/main.gd" id="1_main"]
+[ext_resource type="Environment" path="res://world/environment.tres" id="2_env"]
+[ext_resource type="Script" path="res://world/scenery.gd" id="3_scn"]
+[ext_resource type="PackedScene" path="res://world/runway.tscn" id="4_rwy"]
+[ext_resource type="PackedScene" path="res://world/buildings.tscn" id="5_bld"]
+[ext_resource type="PackedScene" path="res://aircraft/aircraft.tscn" id="6_ac"]
+[ext_resource type="Script" path="res://input/pilot_input.gd" id="7_in"]
+[ext_resource type="Script" path="res://camera/camera_rig.gd" id="8_cam"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="9_hud"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_env")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+rotation = Vector3(-0.113446, -1.867502, 0)
+light_color = Color(1, 0.66, 0.42, 1)
+light_energy = 2.2
+light_angular_distance = 0.6
+shadow_enabled = true
+shadow_bias = 0.1
+shadow_normal_bias = 2.0
+shadow_blur = 1.2
+directional_shadow_mode = 2
+directional_shadow_split_1 = 0.04
+directional_shadow_split_2 = 0.14
+directional_shadow_split_3 = 0.4
+directional_shadow_max_distance = 1800.0
+
+[node name="Scenery" type="Node3D" parent="."]
+script = ExtResource("3_scn")
+
+[node name="Runway" parent="." instance=ExtResource("4_rwy")]
+
+[node name="Buildings" parent="." instance=ExtResource("5_bld")]
+
+[node name="Aircraft" parent="." instance=ExtResource("6_ac")]
+spawn_point = Vector3(0, 0, 1440)
+
+[node name="PilotInput" type="Node" parent="."]
+script = ExtResource("7_in")
+
+[node name="Camera" type="Camera3D" parent="."]
+current = true
+script = ExtResource("8_cam")
+
+[node name="HUD" parent="." instance=ExtResource("9_hud")]
