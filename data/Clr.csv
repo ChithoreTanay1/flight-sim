@@ -1,0 +1,7 @@
+# table: Clr
+# source: F16AeroData.h5 (matches TP-1538 Table III)
+# layout: one 'axis' row per independent variable; 'row' lines hold the first
+# axis for successive combinations of the others (second axis varies fastest).
+# units: angles in degrees, coefficients dimensionless
+axis,alpha_deg,-20,-15,-10,-5,0,5,10,15,20,25,30,35,40,45,50,55,60,70,80,90
+row,-0.155,-0.155,-0.155,-0.201,-0.0024,0.088,0.205,0.22,0.319,0.437,0.68,0.1,0.447,-0.33,-0.068,0.118,0.0802,0.0529,0.0868,-0.0183

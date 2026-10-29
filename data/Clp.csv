@@ -1,0 +1,7 @@
+# table: Clp
+# source: TP-1538 Table III p.97 (hand transcribed; overrides h5)
+# layout: one 'axis' row per independent variable; 'row' lines hold the first
+# axis for successive combinations of the others (second axis varies fastest).
+# units: angles in degrees, coefficients dimensionless
+axis,alpha_deg,-20,-15,-10,-5,0,5,10,15,20,25,30,35,40,45,50,55,60,70,80,90
+row,-0.366,-0.366,-0.366,-0.377,-0.345,-0.434,-0.408,-0.388,-0.329,-0.294,-0.23,-0.21,-0.12,-0.1,-0.1,-0.12,-0.14,-0.1,-0.15,-0.2

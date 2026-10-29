@@ -1,0 +1,7 @@
+# table: eta_el
+# source: F16AeroData.h5 (matches TP-1538 Table III)
+# layout: one 'axis' row per independent variable; 'row' lines hold the first
+# axis for successive combinations of the others (second axis varies fastest).
+# units: angles in degrees, coefficients dimensionless
+axis,dh_deg,-25,-10,0,10,25
+row,1,1,1,1,0.95

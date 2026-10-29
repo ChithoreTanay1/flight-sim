@@ -1,0 +1,7 @@
+# table: Czq
+# source: F16AeroData.h5 (matches TP-1538 Table III)
+# layout: one 'axis' row per independent variable; 'row' lines hold the first
+# axis for successive combinations of the others (second axis varies fastest).
+# units: angles in degrees, coefficients dimensionless
+axis,alpha_deg,-20,-15,-10,-5,0,5,10,15,20,25,30,35,40,45,50,55,60,70,80,90
+row,-23.9,-23.9,-23.9,-29.5,-29.5,-30.5,-31.3,-30.1,-27.7,-28.2,-29,-29.8,-38.3,-35.3,-32.3,-27.3,-25.2,-27.3,-9.35,-2.16

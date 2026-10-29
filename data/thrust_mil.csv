@@ -1,0 +1,13 @@
+# table: thrust_mil
+# source: TP-1538 Table VI p.99 (hand transcribed, SI part)
+# layout: one 'axis' row per independent variable; 'row' lines hold the first
+# axis for successive combinations of the others (second axis varies fastest).
+# units: thrust in N, altitude in m
+axis,mach,0.2,0.4,0.6,0.8,1
+axis,alt_m,0,3048,6096,9144,12192,15240
+row,56401,56089,56223,55111,51953
+row,40699,41420,43764,45263,43804
+row,28080,29401,31536,34472,35806
+row,17970,19082,20728,23663,27133
+row,10987,11565,12632,14456,16902
+row,6227,6939,7384,8585,10275

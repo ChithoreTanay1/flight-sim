@@ -1,0 +1,7 @@
+# table: dCz_sb
+# source: TP-1538 Table III p.64 (hand transcribed)
+# layout: one 'axis' row per independent variable; 'row' lines hold the first
+# axis for successive combinations of the others (second axis varies fastest).
+# units: angles in degrees, coefficients dimensionless
+axis,alpha_deg,-20,-15,-10,-5,0,5,10,15,20,25,30,35,40,45,50,55,60,70,80,90
+row,-0.3858,-0.3858,-0.3858,-0.3858,-0.3858,-0.2685,-0.3021,-0.4248,-0.2094,-0.0969,0.0438,0.0947,0.0014,-0.0097,-0.0153,-0.052,-0.001,-0.0202,-0.0369,-0.0369

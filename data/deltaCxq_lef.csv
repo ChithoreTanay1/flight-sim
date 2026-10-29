@@ -1,0 +1,7 @@
+# table: deltaCxq_lef
+# source: F16AeroData.h5 (matches TP-1538 Table III)
+# layout: one 'axis' row per independent variable; 'row' lines hold the first
+# axis for successive combinations of the others (second axis varies fastest).
+# units: angles in degrees, coefficients dimensionless
+axis,alpha_deg,-20,-15,-10,-5,0,5,10,15,20,25,30,35,40,45
+row,-1.22,-1.22,-1.22,-1.66,-1.62,-1.58,-1.96,-2.51,-2.04,-1.64,-0.824,-0.817,-1.1,-0.55
