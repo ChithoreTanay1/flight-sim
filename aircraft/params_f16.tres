@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="AircraftParams" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://aircraft/AircraftParams.gd" id="1_params"]
+
+[resource]
+script = ExtResource("1_params")
+weight_lbf = 20500.0
+ixx_slugft2 = 9496.0
+iyy_slugft2 = 55814.0
+izz_slugft2 = 63100.0
+ixz_slugft2 = 982.0
+engine_momentum_slugft2s = 160.0
+wing_area_ft2 = 300.0
+span_ft = 30.0
+mac_ft = 11.32
+xcg_ref = 0.35
+xcg = 0.35
+dh_limit_deg = 25.0
+dd_limit_deg = 5.375
+da_limit_deg = 21.5
+dr_limit_deg = 30.0
+lef_max_deg = 25.0
+sb_max_deg = 60.0
+surface_lag_s = 0.0495
+stab_rate_dps = 60.0
+aileron_rate_dps = 80.0
+rudder_rate_dps = 120.0
+lef_lag_s = 0.136
+lef_rate_dps = 25.0
+sb_rate_dps = 30.0
+dd_per_da = 0.25
+cg_x_in = 201.3
+nose_gear_in = Vector3(332.2, 0, -73)
+main_gear_in = Vector3(171.9, 46.7, -73)
+pilot_eye_in = Vector3(384.7, 0, 33.2)
+main_stroke_in = 10.5
+nose_stroke_in = 10.0
+main_wheel_radius_in = 11.0
+nose_wheel_radius_in = 7.5
+static_compression_frac = 0.5
+gear_damping_ratio = 0.6
+mu_rolling = 0.02
+mu_brake = 0.5
+mu_lateral = 0.8
+tef_down_deg = 20.0
+tef_up_deg = -2.0
+hard_landing_sink_fps = 10.0
+overstress_pos_g = 9.0
+overstress_neg_g = -4.5
