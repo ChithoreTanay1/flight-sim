@@ -203,6 +203,9 @@ func reset_ground() -> void:
 	for act in [_stab_l, _stab_r, _ail, _rud, _lef, _sb]:
 		act.pos = 0.0
 	fcs.reset()
+	fcs.in_pitch = 0.0
+	fcs.in_roll = 0.0
+	fcs.in_yaw = 0.0
 	engine.settle(0.0, 0.0, 0.0)
 	throttle = 0.0
 	brake = 0.0
